@@ -1,0 +1,18 @@
+{
+    "sourceFile": "controllers/chatController.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1748567848278,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1748567848278,
+            "name": "Commit-0",
+            "content": "const db = require('../db/db');\n\nexports.saveChatMessage = async (req, res) => {\n  const { user_id, sender, message, timestamp } = req.body;\n\n  try {\n    await db.execute(\n      'INSERT INTO chat_logs (user_id, sender, message, timestamp) VALUES (?, ?, ?, ?)',\n      [user_id, sender, message, timestamp]\n    );\n    res.status(201).json({ success: true });\n  } catch (err) {\n    console.error('Error saving chat message:', err);\n    res.status(500).json({ success: false, error: err.message });\n  }\n};\n"
+        }
+    ]
+}

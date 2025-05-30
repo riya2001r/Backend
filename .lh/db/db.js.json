@@ -1,0 +1,18 @@
+{
+    "sourceFile": "db/db.js",
+    "activeCommit": 0,
+    "commits": [
+        {
+            "activePatchIndex": 0,
+            "patches": [
+                {
+                    "date": 1748568655069,
+                    "content": "Index: \n===================================================================\n--- \n+++ \n"
+                }
+            ],
+            "date": 1748568655069,
+            "name": "Commit-0",
+            "content": "const config = require('../config');     \nconsole.log('Connecting to DB with:', config.db);  \n\nconst mysql = require('mysql2');\n\nlet instance = null;\n\nclass MySQLDatabase {\n    constructor() {\n        if (!instance) {\n            this.pool = mysql.createPool({\n                host: config.db.host,\n                user: config.db.user,\n                password: config.db.password,\n                database: config.db.name,\n                port: config.db.port\n            });\n            instance = this;\n        }\n        return instance;\n    }\n\n    getPool() {\n        return this.pool.promise();\n    }\n}\n\nconst mysqlDb = new MySQLDatabase();\nmodule.exports = mysqlDb.getPool();\n"
+        }
+    ]
+}
